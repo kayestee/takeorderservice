@@ -34,7 +34,6 @@ class Store(takeorders_pb2_grpc.OrderServicer):
             for item in request.items:
                 self.update_stock(item.item_qty)
                 orderRes.itemResp.append(takeorders_pb2.ItemStatus(itemId=item.item_id, wasPlaced="Y"))
-                print(orderRes)
         except:
             orderRes = takeorders_pb2.MessageReply(id=self.id, orderStatus="Failed")
 

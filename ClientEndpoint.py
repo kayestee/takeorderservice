@@ -8,30 +8,23 @@ import takeorders_pb2_grpc
 port_list = []
 out_list = []
 
-
-class Order():
-    def __init__(self, port, order):
-        self.responseMsgs = list()
-        self.server_port = port
-        self.order = order
-
-    async def place_order(self):
-        channel = grpc.aio.insecure_channel(f'localhost:{self.server_port}')
-        stub = takeorders_pb2_grpc.OrderStub(channel)
-        resp = await stub.SendOrder(self.order)
-        self.responseMsgs.append(resp)
+async def place_order(port, order):
+    responseMsgs = []
+    channel = grpc.aio.insecure_channel(f'localhost:{port}')
+    stub = takeorders_pb2_grpc.OrderStub(channel)
+    resp = await stub.SendOrder(order)
+    return resp
 
 
 async def placeorders(orders):
     port, order = orders
-    orderObj = Order(port,order)
-    await orderObj.place_order()
-    return orderObj
+    resp = await place_order(port,order)
+    return resp
 
 
 def start_async(portinlist):
     orderObj = asyncio.run(placeorders(portinlist))
-    return orderObj.responseMsgs
+    return orderObj
 
 
 if __name__ == '__main__':
