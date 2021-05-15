@@ -1,0 +1,20 @@
+[
+  {
+    "customer_id" : 1,
+    "action" : "placeorder",
+    "customer_email" : "abc@gmail.com",
+    "items" :  [{ "item_id": 1111, "item_qty":1, "cost": 39.99 }, { "item_id": 2222, "item_qty":1, "cost": 39.99 }]
+  },
+  {
+    "customer_id" : 2,
+    "action" : "placeorder",
+    "customer_email" : "def@gmail.com",
+    "items" :  [{ "item_id": 1999, "item_qty":10, "cost": 39.99 }]
+  },
+  {
+    "customer_id" : 3,
+    "action" : "placeorder",
+    "customer_email" : "xyz@gmail.com",
+    "items" :  [{ "item_id": 2345, "item_qty":30, "cost": 39.99 }]
+  }
+]
