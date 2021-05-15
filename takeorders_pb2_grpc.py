@@ -21,8 +21,8 @@ class OrderStub(object):
                 )
         self.TakeStock = channel.unary_unary(
                 '/order.Order/TakeStock',
-                request_serializer=takeorders__pb2.OrderMessage.SerializeToString,
-                response_deserializer=takeorders__pb2.OrderStockMsg.FromString,
+                request_serializer=takeorders__pb2.OrderStatus.SerializeToString,
+                response_deserializer=takeorders__pb2.MessageReply.FromString,
                 )
 
 
@@ -51,8 +51,8 @@ def add_OrderServicer_to_server(servicer, server):
             ),
             'TakeStock': grpc.unary_unary_rpc_method_handler(
                     servicer.TakeStock,
-                    request_deserializer=takeorders__pb2.OrderMessage.FromString,
-                    response_serializer=takeorders__pb2.OrderStockMsg.SerializeToString,
+                    request_deserializer=takeorders__pb2.OrderStatus.FromString,
+                    response_serializer=takeorders__pb2.MessageReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -93,7 +93,7 @@ class Order(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/order.Order/TakeStock',
-            takeorders__pb2.OrderMessage.SerializeToString,
-            takeorders__pb2.OrderStockMsg.FromString,
+            takeorders__pb2.OrderStatus.SerializeToString,
+            takeorders__pb2.MessageReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

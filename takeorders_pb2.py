@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x10takeorders.proto\x12\x05order\"g\n\x0cOrderMessage\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\x05\x12\x0e\n\x06\x61\x63tion\x18\x02 \x01(\t\x12\x16\n\x0e\x63ustomer_email\x18\x03 \x01(\t\x12\x1a\n\x05items\x18\x04 \x03(\x0b\x32\x0b.order.Item\"7\n\x04Item\x12\x0f\n\x07item_id\x18\x01 \x01(\x05\x12\x10\n\x08item_qty\x18\x02 \x01(\x05\x12\x0c\n\x04\x63ost\x18\x03 \x01(\x02\"T\n\x0cMessageReply\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x13\n\x0borderStatus\x18\x02 \x01(\t\x12#\n\x08itemResp\x18\x03 \x03(\x0b\x32\x11.order.ItemStatus\"/\n\nItemStatus\x12\x0e\n\x06itemId\x18\x01 \x01(\x05\x12\x11\n\twasPlaced\x18\x02 \x01(\t\"/\n\rOrderStockMsg\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x12\n\norderStock\x18\x02 \x01(\t\"0\n\nServerList\x12\"\n\x07servers\x18\x01 \x03(\x0b\x32\x11.order.ServerPort\"&\n\nServerPort\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04port\x18\x02 \x01(\x05\x32z\n\x05Order\x12\x37\n\tSendOrder\x12\x13.order.OrderMessage\x1a\x13.order.MessageReply\"\x00\x12\x38\n\tTakeStock\x12\x13.order.OrderMessage\x1a\x14.order.OrderStockMsg\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x10takeorders.proto\x12\x05order\"g\n\x0cOrderMessage\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\x05\x12\x0e\n\x06\x61\x63tion\x18\x02 \x01(\t\x12\x16\n\x0e\x63ustomer_email\x18\x03 \x01(\t\x12\x1a\n\x05items\x18\x04 \x03(\x0b\x32\x0b.order.Item\"7\n\x04Item\x12\x0f\n\x07item_id\x18\x01 \x01(\x05\x12\x10\n\x08item_qty\x18\x02 \x01(\x05\x12\x0c\n\x04\x63ost\x18\x03 \x01(\x02\"T\n\x0cMessageReply\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x13\n\x0borderStatus\x18\x02 \x01(\t\x12#\n\x08itemResp\x18\x03 \x03(\x0b\x32\x11.order.ItemStatus\"2\n\nItemStatus\x12\x0e\n\x06itemId\x18\x01 \x01(\x05\x12\x14\n\x0c\x63urrentState\x18\x02 \x01(\t\"6\n\x0bOrderStatus\x12\x0f\n\x07orderId\x18\x01 \x01(\x05\x12\x16\n\x0e\x63ustomer_email\x18\x02 \x01(\t\"t\n\x0fOrderStatusResp\x12\x0f\n\x07orderId\x18\x01 \x01(\x05\x12\x16\n\x0e\x63ustomer_email\x18\x02 \x01(\t\x12\x13\n\x0borderStatus\x18\x03 \x01(\t\x12#\n\x08itemResp\x18\x04 \x03(\x0b\x32\x11.order.ItemStatus2x\n\x05Order\x12\x37\n\tSendOrder\x12\x13.order.OrderMessage\x1a\x13.order.MessageReply\"\x00\x12\x36\n\tTakeStock\x12\x12.order.OrderStatus\x1a\x13.order.MessageReply\"\x00\x62\x06proto3'
 )
 
 
@@ -186,7 +186,7 @@ _ITEMSTATUS = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='wasPlaced', full_name='order.ItemStatus.wasPlaced', index=1,
+      name='currentState', full_name='order.ItemStatus.currentState', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -205,27 +205,27 @@ _ITEMSTATUS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=275,
-  serialized_end=322,
+  serialized_end=325,
 )
 
 
-_ORDERSTOCKMSG = _descriptor.Descriptor(
-  name='OrderStockMsg',
-  full_name='order.OrderStockMsg',
+_ORDERSTATUS = _descriptor.Descriptor(
+  name='OrderStatus',
+  full_name='order.OrderStatus',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='order.OrderStockMsg.id', index=0,
+      name='orderId', full_name='order.OrderStatus.orderId', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='orderStock', full_name='order.OrderStockMsg.orderStock', index=1,
+      name='customer_email', full_name='order.OrderStatus.customer_email', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -243,22 +243,43 @@ _ORDERSTOCKMSG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=324,
-  serialized_end=371,
+  serialized_start=327,
+  serialized_end=381,
 )
 
 
-_SERVERLIST = _descriptor.Descriptor(
-  name='ServerList',
-  full_name='order.ServerList',
+_ORDERSTATUSRESP = _descriptor.Descriptor(
+  name='OrderStatusResp',
+  full_name='order.OrderStatusResp',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='servers', full_name='order.ServerList.servers', index=0,
-      number=1, type=11, cpp_type=10, label=3,
+      name='orderId', full_name='order.OrderStatusResp.orderId', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='customer_email', full_name='order.OrderStatusResp.customer_email', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='orderStatus', full_name='order.OrderStatusResp.orderStatus', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='itemResp', full_name='order.OrderStatusResp.itemResp', index=3,
+      number=4, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -275,59 +296,19 @@ _SERVERLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=373,
-  serialized_end=421,
-)
-
-
-_SERVERPORT = _descriptor.Descriptor(
-  name='ServerPort',
-  full_name='order.ServerPort',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='id', full_name='order.ServerPort.id', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='port', full_name='order.ServerPort.port', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=423,
-  serialized_end=461,
+  serialized_start=383,
+  serialized_end=499,
 )
 
 _ORDERMESSAGE.fields_by_name['items'].message_type = _ITEM
 _MESSAGEREPLY.fields_by_name['itemResp'].message_type = _ITEMSTATUS
-_SERVERLIST.fields_by_name['servers'].message_type = _SERVERPORT
+_ORDERSTATUSRESP.fields_by_name['itemResp'].message_type = _ITEMSTATUS
 DESCRIPTOR.message_types_by_name['OrderMessage'] = _ORDERMESSAGE
 DESCRIPTOR.message_types_by_name['Item'] = _ITEM
 DESCRIPTOR.message_types_by_name['MessageReply'] = _MESSAGEREPLY
 DESCRIPTOR.message_types_by_name['ItemStatus'] = _ITEMSTATUS
-DESCRIPTOR.message_types_by_name['OrderStockMsg'] = _ORDERSTOCKMSG
-DESCRIPTOR.message_types_by_name['ServerList'] = _SERVERLIST
-DESCRIPTOR.message_types_by_name['ServerPort'] = _SERVERPORT
+DESCRIPTOR.message_types_by_name['OrderStatus'] = _ORDERSTATUS
+DESCRIPTOR.message_types_by_name['OrderStatusResp'] = _ORDERSTATUSRESP
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 OrderMessage = _reflection.GeneratedProtocolMessageType('OrderMessage', (_message.Message,), {
@@ -358,26 +339,19 @@ ItemStatus = _reflection.GeneratedProtocolMessageType('ItemStatus', (_message.Me
   })
 _sym_db.RegisterMessage(ItemStatus)
 
-OrderStockMsg = _reflection.GeneratedProtocolMessageType('OrderStockMsg', (_message.Message,), {
-  'DESCRIPTOR' : _ORDERSTOCKMSG,
+OrderStatus = _reflection.GeneratedProtocolMessageType('OrderStatus', (_message.Message,), {
+  'DESCRIPTOR' : _ORDERSTATUS,
   '__module__' : 'takeorders_pb2'
-  # @@protoc_insertion_point(class_scope:order.OrderStockMsg)
+  # @@protoc_insertion_point(class_scope:order.OrderStatus)
   })
-_sym_db.RegisterMessage(OrderStockMsg)
+_sym_db.RegisterMessage(OrderStatus)
 
-ServerList = _reflection.GeneratedProtocolMessageType('ServerList', (_message.Message,), {
-  'DESCRIPTOR' : _SERVERLIST,
+OrderStatusResp = _reflection.GeneratedProtocolMessageType('OrderStatusResp', (_message.Message,), {
+  'DESCRIPTOR' : _ORDERSTATUSRESP,
   '__module__' : 'takeorders_pb2'
-  # @@protoc_insertion_point(class_scope:order.ServerList)
+  # @@protoc_insertion_point(class_scope:order.OrderStatusResp)
   })
-_sym_db.RegisterMessage(ServerList)
-
-ServerPort = _reflection.GeneratedProtocolMessageType('ServerPort', (_message.Message,), {
-  'DESCRIPTOR' : _SERVERPORT,
-  '__module__' : 'takeorders_pb2'
-  # @@protoc_insertion_point(class_scope:order.ServerPort)
-  })
-_sym_db.RegisterMessage(ServerPort)
+_sym_db.RegisterMessage(OrderStatusResp)
 
 
 
@@ -388,8 +362,8 @@ _ORDER = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=463,
-  serialized_end=585,
+  serialized_start=501,
+  serialized_end=621,
   methods=[
   _descriptor.MethodDescriptor(
     name='SendOrder',
@@ -406,8 +380,8 @@ _ORDER = _descriptor.ServiceDescriptor(
     full_name='order.Order.TakeStock',
     index=1,
     containing_service=None,
-    input_type=_ORDERMESSAGE,
-    output_type=_ORDERSTOCKMSG,
+    input_type=_ORDERSTATUS,
+    output_type=_MESSAGEREPLY,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

@@ -15,7 +15,6 @@ async def place_order(port, order):
     resp = await stub.SendOrder(order)
     return resp
 
-
 async def placeorders(orders):
     port, order = orders
     resp = await place_order(port,order)
@@ -27,7 +26,6 @@ def start_async(portinlist):
     return orderObj
 
 
-
 if __name__ == '__main__':
     if len(sys.argv) != 2:
         print("Missing arguments")
@@ -35,7 +33,7 @@ if __name__ == '__main__':
     filename = sys.argv[1]
     orderlist = jsonstore.read_input(filename)
 
-    port_list = list(jsonstore.read_portlist().values())
+    port_list = list(jsonstore.readserverports().values())
     in_list = zip(port_list, orderlist)
 
     with concurrent.futures.ProcessPoolExecutor() as executor:

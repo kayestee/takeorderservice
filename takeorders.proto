@@ -4,7 +4,7 @@ package order;
 
 service Order{
     rpc SendOrder(OrderMessage) returns (MessageReply) {}
-
+    rpc TakeStock(OrderStatus) returns (MessageReply) {}
 }
 
 message OrderMessage {
@@ -29,24 +29,19 @@ message MessageReply {
 
 message ItemStatus {
   int32 itemId =1;
-  string wasPlaced =2;
+  string currentState =2;
 }
 
-
-message OrderStockMsg {
-  int32 id=1;
-  string orderStock=2;
+message OrderStatus {
+  int32 orderId =1;
+  string customer_email =2;
 }
 
-
-message ServerList {
-  repeated  ServerPort servers = 1;
-}
-
-
-message ServerPort {
-  int32 id=1;
-  int32 port=2;
+message OrderStatusResp {
+  int32 orderId =1;
+  string customer_email =2;
+  string orderStatus=3;
+  repeated ItemStatus itemResp = 4;
 }
 
 
